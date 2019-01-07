@@ -1,0 +1,29 @@
+{
+
+  "manifest_version": 2,
+  "name": "Primo Item Display Timing",
+  "version": "0.1",
+
+  "permissions": [
+    "activeTab",
+    "https://wrlc-gwu.primo.exlibrisgroup.com/discovery/*"
+  ],
+
+  "applications": {
+  "gecko": {
+    "id": "primo-timing@library.gwu.edu"
+    }
+  },
+
+ 
+  "browser_action": {
+    "default_icon": "icons/placeholder.png"
+  },
+
+   "content_scripts":[],
+
+  "background": {
+    "scripts": ["background/jquery-3.3.1.min.js",
+                "background/background.js"]
+  }  
+}
