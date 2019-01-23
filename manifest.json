@@ -4,9 +4,12 @@
   "name": "Primo Item Display Timing",
   "version": "0.1",
 
-  "permissions": [
+ "permissions": [
     "activeTab",
-    "https://wrlc-gwu.primo.exlibrisgroup.com/discovery/*"
+    "storage",
+    "https://wrlc-gwu.primo.exlibrisgroup.com/*",
+    "webRequest",
+    "webRequestBlocking"
   ],
 
   "applications": {
@@ -23,7 +26,6 @@
    "content_scripts":[],
 
   "background": {
-    "scripts": ["background/jquery-3.3.1.min.js",
-                "background/background.js"]
+    "scripts": ["background/background.js"]
   }  
 }
