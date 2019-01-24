@@ -7,7 +7,7 @@ var pattern = "https://wrlc-gwu.primo.exlibrisgroup.com/*",
             	"Content-Type": "application/json",
         		}
         	};
-
+// Posts data to the server
 function postToRemote(data) {
 	
 	let options = fetchOptions;
@@ -31,37 +31,37 @@ function registerBrowser() {
 			.then(data => data.browserID)
 			.catch(e => console.error(e));
 }
-
+// function to intercept requests that match a certain pattern and time and record the request and response
 function tracker(browserID, details) {
 	
 	let decoder = new TextDecoder("utf-8"),
 		encoder = new TextEncoder();
 	if (details.url.includes('ILSServices')) {
 		console.log(`Request made ${details.requestId}`) // debugging
+		// Log the request
 		postToRemote({timestamp: Date.now(),
 					type: "request",
 					id: details.requestId,
 					payload: details,
 					browserID: browserID});
 		
-		let filter = browser.webRequest.filterResponseData(details.requestId);
-		
+		// StreamFilter object for capturing the response to this request
+		let filter = browser.webRequest.filterResponseData(details.requestId),
+		// variable for holding the JSON data returned --> need to account for the fact that this data may be sent in multiple packets
+		responseData = null;
+		// Capture the data packets
 		filter.ondata = event => {
-    		let response = decoder.decode(event.data, {stream: true});
-    		postToRemote({timestamp: Date.now(),
-    				type: "response",
-					id: details.requestId,
-    				payload: response,
-					browserID: browserID});
+    		let responsePart = decoder.decode(event.data, {stream: true});
+    		responseData += responsePart; 
     		filter.write(event.data);
   		}
-
+  		// Once all the data has been received, log the response to the server
   		filter.onstop = event => {
   			console.log(`Request completed ${details.requestId}`) //debugging
 			postToRemote({timestamp: Date.now(),
-						type: "responseFinished",
+						type: "response",
 						id: details.requestId,
-						payload: null,
+						payload: responseData,
 						browserID: browserID});
 			filter.disconnect();
   		}
