@@ -1,0 +1,7 @@
+{"pg_credentials": {
+  "user": "primo",
+  "host": "localhost",
+  "database": "primo-timing",
+  "password": "primo",
+  "port": 5432
+}}
