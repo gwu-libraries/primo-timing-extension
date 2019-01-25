@@ -38,6 +38,10 @@ app.use(bodyParser.urlencoded({
 }));
 server = app.listen(3001);
 
+app.get('/test/', (req, res) => {
+	res.sendStatus(200);
+
+});
 
 app.post('/', async (req, res) => {
 	try {
