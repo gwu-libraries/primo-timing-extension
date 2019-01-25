@@ -22,7 +22,7 @@ def init_db():
     ''',
     '''
     CREATE TABLE ils_events
-        (request_id TEXT PRIMARY KEY,
+        (request_id TEXT,
         timestamp NUMERIC,
         payload JSONB,
         type TEXT NOT NULL,
