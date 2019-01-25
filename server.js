@@ -3,7 +3,25 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	config = require('./config.json'),
 	{ Pool } = require('pg'),
-	pool = new Pool(config.pg_credentials);
+	pool = new Pool(config.pg_credentials),
+	{ createLogger, format, transports } = require('winston');
+
+const logger = createLogger({
+  level: 'info',
+  format: format.combine(
+      format.timestamp(),
+      format.json()
+    ),
+  defaultMeta: {service: 'user-service'},
+  transports: [
+    //
+    // - Write to all logs with level `info` and below to `combined.log` 
+    // - Write all logs error (and below) to `error.log`.
+    //
+    new transports.File({ filename: 'error.log', 
+    	level: 'error',
+    	timestamp: true })  ]
+});
  
 app.use(express.static('./'));
 // DO we need the following?
@@ -26,8 +44,8 @@ app.post('/', async (req, res) => {
 		await updateEventsDB(req.body);
 	}
 	catch (e) {
-		console.error(e);
-		console.log(req.body);
+		logger.error(e);
+		logger.error(req.body);
 	}
 	finally {
 		res.sendStatus(200); // This line is necessary, otherwise the request won't terminate 
@@ -50,7 +68,7 @@ app.post('/browser', async (req, res) => {
 		// To Do: Return status code based on type of error
 		// To Do: Refactor as error handler function
 		res.sendStatus(400);
-		console.error(e)
+		logger.error(e);
 	}
 
 });
