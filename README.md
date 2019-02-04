@@ -1,4 +1,4 @@
-###Primo Timing Extension for Firefox
+### Primo Timing Extension for Firefox ###
 
 The purpose of this simple Firefox extension is to collect data about the latency of elements in Primo VE. As currently configured, this extension times the roundtrip latency of requests for item availability, where Primo enhances its indexed information with live calls to one or more Alma IZ's. The extension listens for  "ILSServices" requests made by the Primo UI, logging request and response times to an external database. It also logs the body of the request (which includes information that can be used to identify the IZ to which the request was made), as well as limited information about the browser and OS. (Each browser instance is assigned a unique ID which is stored on the user's computer, allowing for consistency of tracking.)
 
