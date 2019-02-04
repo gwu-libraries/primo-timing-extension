@@ -16,30 +16,30 @@ PostgreSQL 9.5 or greater
 
 1. Set up the server and database.
 
-  a. Clone the repository.
+   a. Clone the repository.
 
-  b. In the project directory, do `npm install` at the command line to install the Node dependencies.
+   b. In the project directory, do `npm install` at the command line to install the Node dependencies.
 
-  c. Optional: Use `virtualenv` to create a Python virtual environment.
+   c. Optional: Use `virtualenv` to create a Python virtual environment.
 
-  d. Do `pip install sqlalchemy, psycopg2` to install the Python dependencies.
+   d. Do `pip install sqlalchemy, psycopg2` to install the Python dependencies.
 
-  e. Create a PostgreSQL database for use with this project.
+   e. Create a PostgreSQL database for use with this project.
 
-  f. Update `config.json` with the name of the database, its port number, and the user's credentials.
+   f. Update `config.json` with the name of the database, its port number, and the user's credentials.
 
-  g. Set up the database by running `python db_setup.py` at the command line.
+   g. Set up the database by running `python db_setup.py` at the command line.
 
-  h. Make sure PostgreSQL is running as a service, and start the server by running `node server.js` or by using a process manager like **pm2** <http://pm2.keymetrics.io/>
+   h. Make sure PostgreSQL is running as a service, and start the server by running `node server.js` or by using a process manager like **pm2** <http://pm2.keymetrics.io/>
 
 2. Package, sign, and install the extension.
   
-  a. Rename `background_.js` as `background.js`.
+   a. Rename `background_.js` as `background.js`.
   
-  b. Edit `background.js` to include the base URL to your Primo instance (stored in the `pattern` variable) and the URL where `server.js` is running (stored in the `remoteLogUrl` variable).
+   b. Edit `background.js` to include the base URL to your Primo instance (stored in the `pattern` variable) and the URL where `server.js` is running (stored in the `remoteLogUrl` variable).
   
-  c. Create a zip file that includes the `backgound` and `icons` folder and the file `manifest.json`.
+   c. Create a zip file that includes the `backgound` and `icons` folder and the file `manifest.json`.
   
-  d. Follow the instructions to create a signed version of your extension, which can be installed by users using the Firefox Extensions menu: <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution/Submitting_an_add-on>.
+   d. Follow the instructions to create a signed version of your extension, which can be installed by users using the Firefox Extensions menu: <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution/Submitting_an_add-on>.
   
-  e. Distribute the `.xpi` version of the extension to your users. Users can install it by following the instructions at <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Distribution_options/Sideloading_add-ons>.
+   e. Distribute the `.xpi` version of the extension to your users. Users can install it by following the instructions at <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Distribution_options/Sideloading_add-ons>.
