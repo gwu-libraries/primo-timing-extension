@@ -5,12 +5,9 @@ The purpose of this simple Firefox extension is to collect data about the latenc
 The extension has been tested on Firefox 54.x and higher on PC's running Windows 7 and 10. 
 
 **Requirements for External Database**
-
-Python 3.x
-
-Node.js 10.x
-
-PostgreSQL 9.5 or greater
+- Python 3.x
+- Node.js 10.x
+- PostgreSQL 9.5 or greater
 
 **Set Up and Installation**
 
